@@ -7,7 +7,10 @@ Vagrant.configure("2") do |config|
 
   # synced app folder
   config.vm.synced_folder "app", "/app"
-
-  config.vm.provision "shell", path "environment/provision.sh"
+  config.vm.provision "shell", inline: <<SHELL
+    sudo apt-get update
+    sudo apt-get install -y nginx
+SHELL
+  #config.vm.provision "shell", path: "enviroment/provision.sh"
 
 end
